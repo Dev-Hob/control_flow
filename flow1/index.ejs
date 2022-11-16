@@ -1,0 +1,19 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Following are the titles of given websites:</h1>
+
+    <ul>
+      <% if(address.length == 1 ){ %>
+      <li><%= convertText(address) %></li>
+      <% } else { %> <% address.forEach( ele => { %>
+      <li><%= convertText(ele) %></li>
+      <% }) %> <% } %>
+    </ul>
+    <% function convertText(text){ var text_format = !text.match("https://") ?
+    "https://" + text: text; var ele = new URL(text_format); console.log(typeof
+    ele); var text = ele + " - "; !ele.hostname ? text = text + "NO RESPONSE" :
+    ele.pathname ? text = text + ele.pathname.replace(/\//, '') + " - " +
+    ele.hostname : text = text + ele.hostname; return text; } %>
+  </body>
+</html>
