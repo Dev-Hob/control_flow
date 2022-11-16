@@ -1,0 +1,22 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Following are the titles of given websites:</h1>
+
+    <ul>
+      <% var address_array = typeof address== `string` ? [address] : address; %>
+      <% var elems = []; %> <%recursion(address_array) %> <% elems.forEach(
+      txt_prnt => { %>
+      <li><%=txt_prnt%></li>
+      <%})%>
+    </ul>
+    <% function convertText(text){ var text_format = !text.match("https://") ?
+    "https://" + text: text; var ele = new URL(text_format); console.log(typeof
+    ele); var text = text + " - "; !ele.hostname ? text = text + "NO RESPONSE" :
+    ele.pathname && ele.pathname.length > 1 ? text = text +
+    ele.pathname.replace(/\//, '') + " - " + ele.hostname : text = text +
+    ele.hostname; return text; } %> <% function recursion(address){ const text =
+    convertText(address[0]); elems.push(text); address.shift(); address.length >
+    0 ? recursion(address): ''; } %>
+  </body>
+</html>
