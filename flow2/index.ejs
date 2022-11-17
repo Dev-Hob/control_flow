@@ -1,0 +1,25 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Following are the titles of given websites:</h1>
+
+    <ul>
+      <% if(!Array.isArray(address)){ %>
+      <li><%= convertText(address) %></li>
+      <% } else { %> <% for(const i = 0; i < address.length; i++){ %> <% var ele
+      = address[i] %>
+      <li><%= convertText(ele) %></li>
+      <% } %> <% } %>
+    </ul>
+    <% function convertText(text){ var text_format = !text.match("https://") ?
+    "https://" + text: text; var ele = new URL(text_format); console.log(
+    ele.pathname); var text = text + ""; !ele.hostname || !text.match(".com") ?
+    text = text + " - " + "NO RESPONSE" : ele.pathname &&
+    ele.pathname.match(/[aA-zZ]/) ? text = text + " - " +
+    ele.pathname.replace(/\//, '').toString().replace(/[a-z]/, (word, index) =>
+    { return index === 0 ? word.toUpperCase(): word;}) + " - " +
+    ele.hostname.toUpperCase() : text = text + " - " +
+    ele.hostname.toString().replace(/[a-z]/, (word, index) => { return index ===
+    0 ? word.toUpperCase(): word;}); return text; } %>
+  </body>
+</html>
